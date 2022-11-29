@@ -1,14 +1,11 @@
 package Company;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /*
      ласс сотрудников с информацией о зарплатах и услови€ми начислени€ зарплаты:
 
 	Operator Ч зарплата складываетс€ только из фиксированной части.
  */
-public class Operator implements Employee{
+public class Operator implements Employee, Comparable<Operator> {
     //»м€ сотрудника
     private String mvName;
 
@@ -33,4 +30,14 @@ public class Operator implements Employee{
         return (int) (Math.random() * ++ivMaxIncome) + ivMinIncome;
     }
 
+    @Override
+    public int compareTo(Operator ioOperator) {
+        if (getMonthSalary() > ioOperator.getMonthSalary()) {
+            return 1;
+        }
+        if (getMonthSalary() < ioOperator.getMonthSalary()) {
+            return -1;
+        }
+        return 0;
+    }
 }

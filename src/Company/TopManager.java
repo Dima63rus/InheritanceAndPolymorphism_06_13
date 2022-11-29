@@ -1,15 +1,12 @@
 package Company;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /*
      ласс сотрудников с информацией о зарплатах и услови€ми начислени€ зарплаты:
 
 	TopManager Ч зарплата складываетс€ из фиксированной части и бонуса в виде 150% от заработной платы,
 	если доход компании более 10 млн рублей.
  */
-public class TopManager implements Employee {
+public class TopManager implements Employee, Comparable<TopManager> {
     //»м€ сотрудника
     private String mvName;
 
@@ -48,5 +45,16 @@ public class TopManager implements Employee {
 
     private double getProc(int ivSalary) {
         return ivSalary * 1.5;
+    }
+
+    @Override
+    public int compareTo(TopManager ioTopManager) {
+        if (getMonthSalary() > ioTopManager.getMonthSalary()) {
+            return 1;
+        }
+        if (getMonthSalary() < ioTopManager.getMonthSalary()) {
+            return -1;
+        }
+        return 0;
     }
 }

@@ -1,15 +1,12 @@
 package Company;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /*
     Класс сотрудников с информацией о зарплатах и условиями начисления зарплаты:
 	Manager — зарплата складывается из фиксированной части и бонуса в виде 5% от заработанных для компании денег.
 
 	Количество заработанных денег для компании генерируйте случайным образом от 115 000 до 140 000 рублей.
  */
-public class Manager implements Employee {
+public class Manager implements Employee, Comparable<Manager> {
     //Имя сотрудника
     private String mvName;
 
@@ -47,5 +44,16 @@ public class Manager implements Employee {
 
     private double getProc(int ivIncome) {
         return ivIncome * 0.05;
+    }
+
+    @Override
+    public int compareTo(Manager ioManager) {
+        if (getMonthSalary() > ioManager.getMonthSalary()) {
+            return 1;
+        }
+        if (getMonthSalary() < ioManager.getMonthSalary()) {
+            return -1;
+        }
+        return 0;
     }
 }

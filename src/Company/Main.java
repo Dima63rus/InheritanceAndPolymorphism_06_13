@@ -11,6 +11,7 @@ public class Main {
             Operator loOperator = new Operator(i, loCompany);
             loCompany.hireAll(loOperator);
         }
+//        loCompany.sort();
 
         // 80 менеджеров по продажам Manager
         for (int i = 1; i <= 80; i++) {
@@ -24,8 +25,8 @@ public class Main {
             loCompany.hireAll(loTopManager);
         }
 
-        //Отсортировать массив
-        loCompany.sort();
+//        //Отсортировать массив
+//        loCompany.sort();
 
         //Количество заработанных денег компанией от 5000000 до 15000000
         loCompany.getIncome();
@@ -41,12 +42,12 @@ public class Main {
 //        int lvSalary = loTopManager.getMonthSalary();
 
         //Распечатайте список из 10–15 самых высоких зарплат в компании.
-        loCompany.getTopSalaryStaff(10);
+//        loCompany.getTopSalaryStaff(10);
 
         //Распечатайте список из 30 самых низких зарплат в компании.
-        loCompany.getLowestSalaryStaff(30);
+//        loCompany.getLowestSalaryStaff(30);
 
         //Увольте 50% сотрудников.
-//        loCompany.fire();
+        loCompany.fire();
     }
 }
