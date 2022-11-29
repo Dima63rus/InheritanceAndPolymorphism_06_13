@@ -7,5 +7,6 @@ package Company;
    Аргументы и возвращаемое значение метода выберите в соответствии с логикой начисления зарплат.
 */
 public interface Employee {
-    double getMonthSalary();
+    int getMonthSalary();
+    int rnd(int ivMinIncome, int ivMaxIncome);
 }
