@@ -1,27 +1,36 @@
 package Company;
 
+import java.math.BigDecimal;
+
 /*
     Класс сотрудников с информацией о зарплатах и условиями начисления зарплаты:
 
 	Operator — зарплата складывается только из фиксированной части.
  */
-public class Operator implements Employee, Comparable<Operator> {
+public class Operator implements Employee {
     //Имя сотрудника
     private String mvName;
+    private int mvSalary;
 
     private Company moCompany;
 
-    final int MC_FIX_SALARY = 30000;
 
     //Конструктор
     public Operator(int i, Company ioCompany) {
         this.mvName = "Оператор_" + i;
+        this.mvSalary = 0;
         this.moCompany = ioCompany;
     }
 
     @Override
+    public void setSalary() {
+        final int LC_FIX_SALARY = 30000;
+        this.mvSalary = LC_FIX_SALARY;
+    }
+
+    @Override
     public int getMonthSalary() {
-        return MC_FIX_SALARY;
+        return this.mvSalary;
     }
 
     @Override
@@ -30,14 +39,7 @@ public class Operator implements Employee, Comparable<Operator> {
         return (int) (Math.random() * ++ivMaxIncome) + ivMinIncome;
     }
 
-    @Override
-    public int compareTo(Operator ioOperator) {
-        if (getMonthSalary() > ioOperator.getMonthSalary()) {
-            return 1;
-        }
-        if (getMonthSalary() < ioOperator.getMonthSalary()) {
-            return -1;
-        }
-        return 0;
+    public void setRefreshSalary(){
+        this.mvSalary = 0;
     }
 }

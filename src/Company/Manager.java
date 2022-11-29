@@ -6,28 +6,34 @@ package Company;
 
 	Количество заработанных денег для компании генерируйте случайным образом от 115 000 до 140 000 рублей.
  */
-public class Manager implements Employee, Comparable<Manager> {
+public class Manager implements Employee {
     //Имя сотрудника
     private String mvName;
-
+    private int mvSalary;
     private Company moCompany;
-
-    final int MC_FIX_SALARY = 90000;
 
     //Конструктор
     public Manager(int i, Company ioCompany) {
         this.mvName = "Менеджер_" + i;
+        this.mvSalary = 0;
         this.moCompany = ioCompany;
+    }
+
+    @Override
+    public void setSalary() {
+        final int LC_FIX_SALARY = 90000;
+
+        //Высчитать 5% от заработанных для компании денег от 115 000 до 140 000
+        int lvMoneyForCompany = getMoneyForCompany();
+        double lvProc = getProc(lvMoneyForCompany);
+
+        this.mvSalary = LC_FIX_SALARY + (int) lvProc;
     }
 
     /* Зарплата складывается из фиксированной части и бонуса в виде 5% от заработанных для компании денег. */
     @Override
     public int getMonthSalary() {
-        //Высчитать 5% от заработанных для компании денег от 115 000 до 140 000
-        int lvMoneyForCompany = getMoneyForCompany();
-        double lvProc = getProc(lvMoneyForCompany);
-
-        return MC_FIX_SALARY + (int) lvProc;
+        return this.mvSalary;
     }
 
     private int getMoneyForCompany() {
@@ -46,14 +52,7 @@ public class Manager implements Employee, Comparable<Manager> {
         return ivIncome * 0.05;
     }
 
-    @Override
-    public int compareTo(Manager ioManager) {
-        if (getMonthSalary() > ioManager.getMonthSalary()) {
-            return 1;
-        }
-        if (getMonthSalary() < ioManager.getMonthSalary()) {
-            return -1;
-        }
-        return 0;
+    public void setRefreshSalary(){
+        this.mvSalary = 0;
     }
 }

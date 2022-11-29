@@ -5,36 +5,33 @@ public class Main {
         //Создать компанию
         Company loCompany = new Company();
 
+        //Количество заработанных денег компанией от 5000000 до 15000000
+        loCompany.getIncome();
+
         //Наймите в компанию:
         // 180 операторов Operator
         for (int i = 1; i <= 180; i++) {
-            Operator loOperator = new Operator(i, loCompany);
-            loCompany.hireAll(loOperator);
+            Employee loEmployee = new Operator(i, loCompany);
+            loCompany.hireAll(loEmployee);
         }
-//        loCompany.sort();
 
         // 80 менеджеров по продажам Manager
         for (int i = 1; i <= 80; i++) {
-            Manager loManager = new Manager(i, loCompany);
-            loCompany.hireAll(loManager);
+            Employee loEmployee = new Manager(i, loCompany);
+            loCompany.hireAll(loEmployee);
         }
 
         // 10 топ-менеджеров TopManager
         for (int i = 1; i <= 10; i++) {
-            TopManager loTopManager = new TopManager(i, loCompany);
-            loCompany.hireAll(loTopManager);
+            Employee loEmployee = new TopManager(i, loCompany);
+            loCompany.hireAll(loEmployee);
         }
 
-//        //Отсортировать массив
-//        loCompany.sort();
 
-        //Количество заработанных денег компанией от 5000000 до 15000000
-        loCompany.getIncome();
-
-//        Test Проверка получения зарплат сотрудниками
+        //Test Проверка получения зарплат сотрудниками
 //        Operator loOperator = new Operator(300, loCompany);
 //        int lvSalary = loOperator.getMonthSalary();
-//
+
 //        Manager loManager = new Manager(300, loCompany);
 //        lvSalary = loManager.getMonthSalary();
 //
@@ -42,12 +39,23 @@ public class Main {
 //        int lvSalary = loTopManager.getMonthSalary();
 
         //Распечатайте список из 10–15 самых высоких зарплат в компании.
-//        loCompany.getTopSalaryStaff(10);
+        loCompany.getTopSalaryStaff(10);
+        System.out.print("\n"); // Пропуск строки
 
         //Распечатайте список из 30 самых низких зарплат в компании.
-//        loCompany.getLowestSalaryStaff(30);
+        loCompany.getLowestSalaryStaff(30);
+        System.out.print("\n"); // Пропуск строки
 
         //Увольте 50% сотрудников.
+        System.out.println("Увольнение сотрудников.");
         loCompany.fire();
+
+        //Распечатайте список из 10–15 самых высоких зарплат в компании.
+        loCompany.getTopSalaryStaff(10);
+        System.out.print("\n"); // Пропуск строки
+
+        //Распечатайте список из 30 самых низких зарплат в компании.
+        loCompany.getLowestSalaryStaff(30);
+        System.out.print("\n"); // Пропуск строки
     }
 }

@@ -1,10 +1,13 @@
 package Company;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
 
-public class Company implements Employee {
-    public List<Employee> mtEmployee = new ArrayList<>();
+public class Company {
+    private List<Employee> mtEmployee = new ArrayList<>(); //Общий список сотрудников
 
     private int mvIncome;
 
@@ -16,13 +19,20 @@ public class Company implements Employee {
     /* найм списка сотрудников */
     public void hireAll(Employee ivEmployee) {
         mtEmployee.add(ivEmployee);
+        //Назначить зарплату
+        ivEmployee.setSalary();
     }
 
     /* увольнение сотрудника */
     public void fire() {
+        int lvStartCount = mtEmployee.size();
+        int lvEndCount = mtEmployee.size() / 2;
+
         System.out.println("Сотрудников до сокращения: " + mtEmployee.size());
-        for (int i = 0; i < 50; i++) {
-            mtEmployee.remove(i);
+        for (int i = lvStartCount; i > lvEndCount; i--) {
+            Employee lvEmployee = mtEmployee.get(ThreadLocalRandom.current().nextInt(0, i - 1));
+            lvEmployee.setRefreshSalary(); // Обнуление ЗП
+            mtEmployee.remove(i - 1); // Удаление сотрудника
         }
         System.out.println("Сотрудников после сокращения: " + mtEmployee.size());
     }
@@ -33,6 +43,7 @@ public class Company implements Employee {
     public void getIncome() {
         final int LC_MIN_INCOME = 5000000;
         final int LC_MAX_INCOME = 15000000;
+
         mvIncome = rnd(LC_MIN_INCOME, LC_MAX_INCOME);
     }
 
@@ -43,48 +54,26 @@ public class Company implements Employee {
 
     /* Они должны содержать сотрудников, отсортированных по убыванию и возрастанию заработной платы */
     public void getTopSalaryStaff(int ivCount) {
+        Collections.sort(mtEmployee, Collections.<Employee>reverseOrder());
+        System.out.println("Отсортировать список по убыванию зарплат: ");
         //Отсортировать список по убыванию зарплат
         for (Employee employee : mtEmployee) {
             System.out.println(employee.getMonthSalary());
         }
-
-        //Распечатать ivCount
-//        for (int i = 0; i < ivCount; i++) {
-//            Employee loEmployee = mtEmployee.get(i);
-//            if (i == 0) {
-//                System.out.println("Список из " + ivCount + " самых высоких зарплат:");
-//            }
-//            System.out.println(loEmployee.getMonthSalary());
-//        }
     }
 
     /* Они должны содержать сотрудников, отсортированных по убыванию и возрастанию заработной платы */
     public void getLowestSalaryStaff(int ivCount) {
         //Отсортировать список по возрастанию зарплат
-//        ???
+        Collections.sort(mtEmployee);
 
-        //Распечатать ivCount
-//        for (int i = 0; i < ivCount; i++) {
-//            Employee loEmployee = mtEmployee.get(i);
-//            if (i == 0) {
-//                System.out.println("Список из " + ivCount + " самых низких зарплат:");
-//            }
-//            System.out.println(loEmployee.getMonthSalary());
-//        }
-    }
-
-    @Override
-    public int getMonthSalary() {
-        return 0;
+        System.out.println("Отсортировать список по возрастанию зарплат: ");
+        for (Employee employee : mtEmployee) {
+            System.out.println(employee.getMonthSalary());
+        }
     }
 
     public int getMvIncome() {
         return mvIncome;
-    }
-
-
-    public void sort() {
-//        mtEmployee.sort();
-//        Collections.sort(mtEmployee);
     }
 }
