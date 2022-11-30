@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 
 /*
      ласс сотрудников с информацией о зарплатах и услови€ми начислени€ зарплаты:
-
 	Operator Ч зарплата складываетс€ только из фиксированной части.
  */
 public class Operator implements Employee {
