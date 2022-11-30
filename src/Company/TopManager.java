@@ -3,19 +3,19 @@ package Company;
 import java.math.BigDecimal;
 
 /*
-    Класс сотрудников с информацией о зарплатах и условиями начисления зарплаты:
-	TopManager — зарплата складывается из фиксированной части и бонуса в виде 150% от заработной платы,
-	если доход компании более 10 млн рублей.
+    РљР»Р°СЃСЃ СЃРѕС‚СЂСѓРґРЅРёРєРѕРІ СЃ РёРЅС„РѕСЂРјР°С†РёРµР№ Рѕ Р·Р°СЂРїР»Р°С‚Р°С… Рё СѓСЃР»РѕРІРёСЏРјРё РЅР°С‡РёСЃР»РµРЅРёСЏ Р·Р°СЂРїР»Р°С‚С‹:
+	TopManager вЂ” Р·Р°СЂРїР»Р°С‚Р° СЃРєР»Р°РґС‹РІР°РµС‚СЃСЏ РёР· С„РёРєСЃРёСЂРѕРІР°РЅРЅРѕР№ С‡Р°СЃС‚Рё Рё Р±РѕРЅСѓСЃР° РІ РІРёРґРµ 150% РѕС‚ Р·Р°СЂР°Р±РѕС‚РЅРѕР№ РїР»Р°С‚С‹,
+	РµСЃР»Рё РґРѕС…РѕРґ РєРѕРјРїР°РЅРёРё Р±РѕР»РµРµ 10 РјР»РЅ СЂСѓР±Р»РµР№.
  */
 public class TopManager implements Employee {
-    //Имя сотрудника
+    //РРјСЏ СЃРѕС‚СЂСѓРґРЅРёРєР°
     private final String mvName;
     private BigDecimal mvSalary;
     private final Company moCompany;
 
-    //Конструктор
+    //РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
     public TopManager(int i, Company ioCompany) {
-        this.mvName = "ТопМенеджер_" + i;
+        this.mvName = "РўРѕРїРњРµРЅРµРґР¶РµСЂ_" + i;
         this.mvSalary = BigDecimal.valueOf(0.0);
         this.moCompany = ioCompany;
     }
@@ -25,10 +25,10 @@ public class TopManager implements Employee {
         final BigDecimal LC_MAX_INCOME_COMPANY = BigDecimal.valueOf(10000000.0);
         final BigDecimal LC_FIX_SALARY = BigDecimal.valueOf(150000.0);
 
-        //Посчитать доход компании
+        //РџРѕСЃС‡РёС‚Р°С‚СЊ РґРѕС…РѕРґ РєРѕРјРїР°РЅРёРё
         BigDecimal lvProc = BigDecimal.valueOf(0.0);
         if (moCompany != null) {
-            //Высчитать 150% от зарплаты
+            //Р’С‹СЃС‡РёС‚Р°С‚СЊ 150% РѕС‚ Р·Р°СЂРїР»Р°С‚С‹
             int lvInt = moCompany.getMvIncome().compareTo(LC_MAX_INCOME_COMPANY);
             if (moCompany.getMvIncome().compareTo(LC_MAX_INCOME_COMPANY) == 1) {
                 lvProc = getProc(LC_FIX_SALARY);
@@ -37,8 +37,8 @@ public class TopManager implements Employee {
         this.mvSalary = LC_FIX_SALARY.add(lvProc);
     }
 
-    /* Зарплата складывается из фиксированной части и бонуса в виде 150% от заработной платы,
-            если доход компании более 10 млн рублей */
+    /* Р—Р°СЂРїР»Р°С‚Р° СЃРєР»Р°РґС‹РІР°РµС‚СЃСЏ РёР· С„РёРєСЃРёСЂРѕРІР°РЅРЅРѕР№ С‡Р°СЃС‚Рё Рё Р±РѕРЅСѓСЃР° РІ РІРёРґРµ 150% РѕС‚ Р·Р°СЂР°Р±РѕС‚РЅРѕР№ РїР»Р°С‚С‹,
+            РµСЃР»Рё РґРѕС…РѕРґ РєРѕРјРїР°РЅРёРё Р±РѕР»РµРµ 10 РјР»РЅ СЂСѓР±Р»РµР№ */
     @Override
     public BigDecimal getMonthSalary() {
         return this.mvSalary;
