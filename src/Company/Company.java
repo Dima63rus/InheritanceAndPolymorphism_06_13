@@ -1,5 +1,7 @@
 package Company;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -8,7 +10,7 @@ import java.util.concurrent.ThreadLocalRandom;
 public class Company {
     private final List<Employee> mtEmployee = new ArrayList<>(); //ќбщий список сотрудников
 
-    private int mvIncome;
+    private BigDecimal mvIncome;
 
     /* найм одного сотрудника */
     public void hire(Employee ivEmployee) {
@@ -37,18 +39,11 @@ public class Company {
     }
 
     /* получение значени€ дохода компании
-     оличество заработанных денег дл€ компании генерируйте случайным образом от 115 000 до 140 000 рублей.
+     оличество заработанных денег компанией от 5000000.0 до 15000000.0 рублей.
     */
     public void getIncome() {
-        final int LC_MIN_INCOME = 5000000;
-        final int LC_MAX_INCOME = 15000000;
-
-        mvIncome = rnd(LC_MIN_INCOME, LC_MAX_INCOME);
-    }
-
-    public int rnd(int ivMinIncome, int ivMaxIncome) {
-        ivMaxIncome -= ivMinIncome;
-        return (int) (Math.random() * ++ivMaxIncome) + ivMinIncome;
+        //ќкругление до 2ух сотых
+        mvIncome = BigDecimal.valueOf(ThreadLocalRandom.current().nextDouble(5000000.0, 15000000.0)).setScale(2, RoundingMode.HALF_DOWN);
     }
 
     /* ќни должны содержать сотрудников, отсортированных по убыванию и возрастанию заработной платы */
@@ -72,7 +67,7 @@ public class Company {
         }
     }
 
-    public int getMvIncome() {
+    public BigDecimal getMvIncome() {
         return mvIncome;
     }
 }

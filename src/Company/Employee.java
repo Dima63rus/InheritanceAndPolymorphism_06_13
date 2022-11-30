@@ -1,5 +1,7 @@
 package Company;
 
+import java.math.BigDecimal;
+
 /*
    Каждый класс сотрудника должен имплементировать интерфейс Employee.
    В интерфейсе Employee должен быть объявлен метод, возвращающий зарплату сотрудника:
@@ -11,18 +13,10 @@ public interface Employee extends Comparable<Employee> {
 
     void setRefreshSalary(); //Обнуление ЗП при увольнении
 
-    int getMonthSalary(); //Вернуть ЗП сотрудника
-
-    int rnd(int ivMinIncome, int ivMaxIncome);
+    BigDecimal getMonthSalary(); //Вернуть ЗП сотрудника
 
     @Override
     default int compareTo(Employee ioEmployee) { //Сравнение по полю ЗП
-        if (getMonthSalary() > ioEmployee.getMonthSalary()) {
-            return 1;
-        }
-        if (getMonthSalary() < ioEmployee.getMonthSalary()) {
-            return -1;
-        }
-        return 0;
+        return getMonthSalary().compareTo(ioEmployee.getMonthSalary());
     }
 }

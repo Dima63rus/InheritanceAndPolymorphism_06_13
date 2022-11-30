@@ -1,5 +1,7 @@
 package Company;
 
+import java.math.BigDecimal;
+
 /*
     Класс сотрудников с информацией о зарплатах и условиями начисления зарплаты:
 
@@ -9,51 +11,45 @@ package Company;
 public class TopManager implements Employee {
     //Имя сотрудника
     private final String mvName;
-    private int mvSalary;
+    private BigDecimal mvSalary;
     private final Company moCompany;
-
 
     //Конструктор
     public TopManager(int i, Company ioCompany) {
         this.mvName = "ТопМенеджер_" + i;
-        this.mvSalary = 0;
+        this.mvSalary = BigDecimal.valueOf(0.0);
         this.moCompany = ioCompany;
     }
 
     @Override
     public void setSalary() {
-        final int LC_MAX_INCOME_COMPANY = 10000000;
-        final int LC_FIX_SALARY = 150000;
+        final BigDecimal LC_MAX_INCOME_COMPANY = BigDecimal.valueOf(10000000.0);
+        final BigDecimal LC_FIX_SALARY = BigDecimal.valueOf(150000.0);
 
         //Посчитать доход компании
-        double lvProc = 0.0d;
+        BigDecimal lvProc = BigDecimal.valueOf(0.0);
         if (moCompany != null) {
             //Высчитать 150% от зарплаты
-            if (moCompany.getMvIncome() > LC_MAX_INCOME_COMPANY) {
+            int lvInt = moCompany.getMvIncome().compareTo(LC_MAX_INCOME_COMPANY);
+            if (moCompany.getMvIncome().compareTo(LC_MAX_INCOME_COMPANY) == 1) {
                 lvProc = getProc(LC_FIX_SALARY);
             }
         }
-
-        this.mvSalary = LC_FIX_SALARY + (int) lvProc;
+        this.mvSalary = LC_FIX_SALARY.add(lvProc);
     }
 
     /* Зарплата складывается из фиксированной части и бонуса в виде 150% от заработной платы,
             если доход компании более 10 млн рублей */
     @Override
-    public int getMonthSalary() {
+    public BigDecimal getMonthSalary() {
         return this.mvSalary;
     }
 
-    @Override
-    public int rnd(int ivMinIncome, int ivMaxIncome) {
-        return 0;
-    }
-
-    private double getProc(int ivSalary) {
-        return ivSalary * 1.5;
+    private BigDecimal getProc(BigDecimal ivSalary) {
+        return ivSalary.multiply(BigDecimal.valueOf(1.5));
     }
 
     public void setRefreshSalary() {
-        this.mvSalary = 0;
+        this.mvSalary = BigDecimal.valueOf(0.0);
     }
 }
