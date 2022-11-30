@@ -8,9 +8,9 @@ package Company;
  */
 public class TopManager implements Employee {
     //Имя сотрудника
-    private String mvName;
+    private final String mvName;
     private int mvSalary;
-    private Company moCompany;
+    private final Company moCompany;
 
 
     //Конструктор

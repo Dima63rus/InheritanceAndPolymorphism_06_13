@@ -27,17 +27,6 @@ public class Main {
             loCompany.hireAll(loEmployee);
         }
 
-
-        //Test Проверка получения зарплат сотрудниками
-//        Operator loOperator = new Operator(300, loCompany);
-//        int lvSalary = loOperator.getMonthSalary();
-
-//        Manager loManager = new Manager(300, loCompany);
-//        lvSalary = loManager.getMonthSalary();
-//
-//        TopManager loTopManager = new TopManager(300, loCompany);
-//        int lvSalary = loTopManager.getMonthSalary();
-
         //Распечатайте список из 10–15 самых высоких зарплат в компании.
         loCompany.getTopSalaryStaff(10);
         System.out.print("\n"); // Пропуск строки

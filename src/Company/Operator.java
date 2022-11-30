@@ -1,7 +1,5 @@
 package Company;
 
-import java.math.BigDecimal;
-
 /*
     Класс сотрудников с информацией о зарплатах и условиями начисления зарплаты:
 
@@ -12,7 +10,7 @@ public class Operator implements Employee {
     private String mvName;
     private int mvSalary;
 
-    private Company moCompany;
+    private final Company moCompany;
 
 
     //Конструктор
@@ -24,8 +22,7 @@ public class Operator implements Employee {
 
     @Override
     public void setSalary() {
-        final int LC_FIX_SALARY = 30000;
-        this.mvSalary = LC_FIX_SALARY;
+        this.mvSalary = 30000;
     }
 
     @Override

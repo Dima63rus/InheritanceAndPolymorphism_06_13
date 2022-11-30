@@ -1,13 +1,12 @@
 package Company;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Company {
-    private List<Employee> mtEmployee = new ArrayList<>(); //Общий список сотрудников
+    private final List<Employee> mtEmployee = new ArrayList<>(); //Общий список сотрудников
 
     private int mvIncome;
 
@@ -32,7 +31,7 @@ public class Company {
         for (int i = lvStartCount; i > lvEndCount; i--) {
             Employee lvEmployee = mtEmployee.get(ThreadLocalRandom.current().nextInt(0, i - 1));
             lvEmployee.setRefreshSalary(); // Обнуление ЗП
-            mtEmployee.remove(i - 1); // Удаление сотрудника
+            mtEmployee.remove(lvEmployee); // Удаление сотрудника
         }
         System.out.println("Сотрудников после сокращения: " + mtEmployee.size());
     }
@@ -54,7 +53,7 @@ public class Company {
 
     /* Они должны содержать сотрудников, отсортированных по убыванию и возрастанию заработной платы */
     public void getTopSalaryStaff(int ivCount) {
-        Collections.sort(mtEmployee, Collections.<Employee>reverseOrder());
+        Collections.sort(mtEmployee, Collections.reverseOrder());
         System.out.println("Отсортировать список по убыванию зарплат: ");
         //Отсортировать список по убыванию зарплат
         for (Employee employee : mtEmployee) {
